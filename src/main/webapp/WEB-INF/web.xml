@@ -17,6 +17,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>FixturesServlet</servlet-name>
+        <servlet-class>xyz.luan.kesef.fixtures.FixturesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FixturesServlet</servlet-name>
+        <url-pattern>/test/_fixtures</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>EndpointFixturesServlet</servlet-name>
         <servlet-class>io.yawp.servlet.FixturesServlet</servlet-class>
     </servlet>
