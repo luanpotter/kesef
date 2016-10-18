@@ -1,7 +1,7 @@
 module.exports = {
-    entry: './main.jsx',
+    entry: './jsx/main.jsx',
     output: {
-        path: './',
+        path: './dist/',
         filename: 'bundle.js'
     },
     module : {
@@ -12,6 +12,10 @@ module.exports = {
           query: {
                presets: ['es2015']
           }
+        },
+        {
+          test: /\.png$/,
+          loader: 'file?name=dist/[path][name].[hash].[ext]'
         }
       ]
     }
