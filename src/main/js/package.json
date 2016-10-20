@@ -12,9 +12,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "lodash": "^4.16.4",
     "numeral": "^1.5.3",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-modal": "^1.5.2",
     "yawp": "^1.0.34"
   },
   "devDependencies": {

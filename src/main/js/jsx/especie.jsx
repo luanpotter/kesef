@@ -28,7 +28,7 @@ var smallText = {
 
 class Especie extends React.Component {
   render () {
-    return <div className="especie" style={ especiesStyle }>
+    return <div className="especie" style={ especiesStyle } onClick={this.props.onClick} >
       <div className="type" style={ inlineBlock }><img src={IMGS[this.props.type]} /></div>
       <div style={ inlineBlock }>
         <div>
