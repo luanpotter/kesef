@@ -1,9 +1,12 @@
 import React from 'react';
 import numeral from 'numeral';
+import yawp from 'yawp';
 
 const IMGS = {};
-IMGS.MOEDA = require('../images/coins.png');
-IMGS.PAPEL = require('../images/notes.png');
+IMGS.MOEDA = require('../../images/coins.png');
+IMGS.PAPEL = require('../../images/notes.png');
+
+import store from '../store.jsx';
 
 var inlineBlock = {
   display: 'inline-block'
@@ -27,6 +30,14 @@ var smallText = {
 };
 
 class Especie extends React.Component {
+  componentDidMount() {
+    store.get('user').then(function (me) {
+      yawp('/products').where('especie', '=', this.props.id).where('owner', '=', me.id).list(function (r) {
+        console.log(r); // sum all!
+      });
+    });
+  }
+
   render () {
     return <div className="especie" style={ especiesStyle } onClick={this.props.onClick} >
       <div className="type" style={ inlineBlock }><img src={IMGS[this.props.type]} /></div>

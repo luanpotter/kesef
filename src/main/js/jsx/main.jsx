@@ -1,42 +1,30 @@
-import React from 'react';
 import {render} from 'react-dom';
-import yawp from 'yawp';
-import _ from 'lodash';
-import Especie from './especie.jsx';
-import Popup from './popup.jsx';
+import React from 'react';
+import App from './components/app.jsx';
+import Signup from './components/signup.jsx';
+import store from './store.jsx';
 
-class App extends React.Component {
- constructor(props) {
+const PAGES = {
+  main : App,
+  signup : Signup
+};
+
+class Main extends React.Component {
+  constructor(props) {
     super(props);
-    this.state = { especie : null };
+    this.state = { page : 'main' };
   }
 
-  componentWillMount() {
-    console.log('hue');
-    yawp('/especies').where('currency', '=', 'BRL').list(especies => {
-        this.setState({ especies });
+  componentDidMount() {
+    store.on('page', page => {
+      this.setState({ page : page });
     });
   }
 
-  render () {
-    return <div>
-      <Popup especie={this.state.especie} close={this.closePopup.bind(this)} />
-      { this.especiesList() }
-    </div>;
-  }
-
-  closePopup() {
-    this.setState({ especie : null });
-  }
-
-  especiesList() {
-    if (this.state.especies) {
-        return <div className="especies">{ this.state.especies.map(e => <Especie key={e.id} onClick={() => this.setState({especie : e})} {...e} />) }</div>;
-    } else {
-        return <p>Loading!</p>;
-    }
+  render() {
+    var Page = PAGES[this.state.page];
+    return <Page />;
   }
 }
 
-
-render(<App/>, document.getElementById('app'));
+render(<Main/>, document.getElementById('app'));
